@@ -15,7 +15,7 @@ class Application:
         self.header = Header(self.driver)
         self.main_page = MainPage(self.driver)
         self.cart_results = CartResultsPage(self.driver)
-        self.login_page = LoginPage(self.driver)
+        self.login_in_page = LoginPage(self.driver)
         self.side_bar = SideBar(self.driver)
         self.reely_product_page = ReelyProductPage(self.driver)
         self.verify_product_page = ProductVerificationPage(self.driver)

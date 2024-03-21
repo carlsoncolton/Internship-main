@@ -19,9 +19,9 @@ password = 'Colton!123'
 
 @when("Login to the page")
 def login(context):
-    context.app.login_page.enter_username(username)
-    context.app.login_page.enter_password(password)
-    context.app.login_page.click_login_button()
+    context.app.login_in_page.enter_username(username)
+    context.app.login_in_page.enter_password(password)
+    context.app.login_in_page.click_login_button()
     time.sleep(3)
 
 
@@ -37,6 +37,7 @@ def click_first_product(context):
     time.sleep(5)
     # context.driver.execute_script("'window.scrollTo(0, document.body.scrollHeight);")
 
+
 @then("Verify the three options of visualization are 'architecture', 'interior', 'lobby'")
 def verify_three_options_of_visualization(context):
     context.app.verify_product_page.verify_product_text1()
@@ -47,6 +48,7 @@ def verify_three_options_of_visualization(context):
 
 @then("Verify the visualization options are clickable")
 def verify_options_clickable(context):
-     context.app.verify_product_page.click_product_text1()
-     context.app.verify_product_page.click_product_text2()
-     context.app.verify_product_page.click_product_text3()
+    context.app.verify_product_page.scroll()
+    context.app.verify_product_page.click_product_text1()
+    context.app.verify_product_page.click_product_text2()
+    context.app.verify_product_page.click_product_text3()

@@ -8,8 +8,7 @@ from time import sleep
 
 
 class ProductVerificationPage(Page):
-    # ARCHITECTURE = (By.XPATH, "//a[@class='tab w-inline-block w-tab-link w--current' and @data-w-tab='Tab 1']")
-    ARCHITECTURE = (By.CSS_SELECTOR, "a[data-w-tab='Tab 1']")
+    ARCHITECTURE = (By.XPATH, "//a[@data-w-tab='Tab 1']")
     INTERIOR = (By.ID, 'w-tabs-0-data-w-tab-1')
     LOBBY = (By.ID, 'w-tabs-0-data-w-tab-2')
 
@@ -22,14 +21,17 @@ class ProductVerificationPage(Page):
     def verify_product_text3(self):
         self.find_element(*self.LOBBY)
 
+    def scroll(self):
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
     def click_product_text1(self):
-        sleep(3)
+        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(self.ARCHITECTURE))
         self.click(*self.ARCHITECTURE)
 
     def click_product_text2(self):
-        sleep(3)
+        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(self.INTERIOR))
         self.click(*self.INTERIOR)
 
     def click_product_text3(self):
-        sleep(3)
+        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(self.LOBBY))
         self.click(*self.LOBBY)
