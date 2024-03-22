@@ -7,7 +7,7 @@ from app.application import Application
 from selenium.webdriver.chrome.options import Options
 
 
-def browser_init(context):
+def browser_init(context, scenario_name):
     """
     :param context: Behave context
     """
@@ -41,11 +41,10 @@ def browser_init(context):
     url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
     options = Options()
     bstack_options = {
-        'browser': 'Chrome',
-        'browser_version': '115.0',
         'os': 'OS X',
-        'os_version': 'Ventura',
-        'name': 'User can open product detail and see three options of visualization'
+        'osVersion': 'Ventura',
+        'browserName': 'Chrome',
+        'sessionName': scenario_name
     }
     options.set_capability('bstack:options', bstack_options)
     context.driver = webdriver.Remote(url, options=options)
@@ -59,7 +58,7 @@ def browser_init(context):
 
 def before_scenario(context, scenario):
     print('\nStarted scenario: ', scenario.name)
-    browser_init(context)
+    browser_init(context, scenario.name)
 
 
 def before_step(context, step):
